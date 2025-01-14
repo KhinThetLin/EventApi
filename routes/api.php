@@ -24,19 +24,14 @@ Route::post('login', [AuthController::class, 'login']);
 Route::get('/event', [EventController::class, 'index']);
 Route::get('event/show/{id}', [EventController::class, 'show']);
 
-Route::middleware('auth:sanctum')->group(function () {
-	//Route::get('/event', [EventController::class, 'index']);
+/*Route::middleware('auth:sanctum')->group(function () {
+});*/
+Route::middleware(['auth:sanctum', 'check.admin'])->group(function () {
     Route::post('event/store', [EventController::class, 'store']);    
     Route::put('event/update/{id}', [EventController::class, 'update']);
     Route::delete('event/delete/{id}', [EventController::class, 'destroy']);
     Route::post('logout', [AuthController::class, 'logout']);
 });
 /*
-Route::middleware('throttle:60,1')->group(function () {
-    Route::get('/event', [EventController::class, 'index']);
-    Route::post('/event', [EventController::class, 'store']);
-    Route::put('/event/update/{id}', [EventController::class, 'update']);
-    Route::delete('/event/delete/{id}', [EventController::class, 'destroy']);
-});
-
+Route::middleware(['auth:sanctum', 'check.admin', 'throttle:10,1'])->post('/event/store', [EventController::class, 'store']);
 Route::middleware('throttle:10,1')->post('/event/store', [EventController::class, 'store']);*/

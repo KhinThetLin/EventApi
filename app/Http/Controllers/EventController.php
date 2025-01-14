@@ -7,11 +7,7 @@ use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
-    /*public function __construct()
-    {
-        $this->middleware('auth:sanctum')->except(['index', 'show']);
-    }
-*/
+   
     public function index(Request $request)
     {
         $query = Event::query();
@@ -36,17 +32,11 @@ class EventController extends Controller
         return response()->json(['count' => $count,'data'=> $event], 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
+ 
     public function store(Request $request)
     {
         $rules = [
@@ -70,26 +60,17 @@ class EventController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show($id)
     {
         $event = Event::find($id);
         return response()->json($event, 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit($id)
     {
         
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, $id)
     {
         $rules = [
@@ -112,9 +93,6 @@ class EventController extends Controller
         return response()->json(['message' => 'Event Updated successfully','data'=> $event], 200);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id)
     {
         $event = Event::find($id);
