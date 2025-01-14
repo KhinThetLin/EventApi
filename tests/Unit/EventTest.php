@@ -35,7 +35,7 @@ class EventTest extends TestCase
 
 	    $user = \App\Models\User::first();  
 	    if (!$user) {
-	        $user = \App\Models\User::factory()->create(['email' =>'admin@gamil.com','password' => Hash::make('admin12345'),'role' => 'admin']);
+	        $user = \App\Models\User::factory()->create(['email' =>'admin@gmail.com','password' => Hash::make('admin12345'),'role' => 'admin']);
 	    }
 
 	    $token = $user->createToken('TestToken')->plainTextToken; 
